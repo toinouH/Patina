@@ -10,13 +10,7 @@ repositories {
     mavenCentral()
     maven("https://papermc.io/repo/repository/maven-public/") {
         content { onlyForConfigurations(PAPERCLIP_CONFIG) }
-        }
-    }
-    maven("https://maven.quiltmc.org/repository/release/") {
-        content {
-            onlyForConfigurations("remapper")
-        }
-    }
+       }
 }
 
 dependencies {
