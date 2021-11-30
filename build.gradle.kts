@@ -1,3 +1,5 @@
+import io.papermc.paperweight.util.constants.*
+
 plugins {
     java
     id("com.github.johnrengelman.shadow") version "7.1.0" apply false
@@ -7,8 +9,7 @@ plugins {
 repositories {
     mavenCentral()
     maven("https://papermc.io/repo/repository/maven-public/") {
-        content {
-            onlyForConfigurations("paperclip")
+        content { onlyForConfigurations(PAPERCLIP_CONFIG) }
         }
     }
     maven("https://maven.quiltmc.org/repository/release/") {
@@ -52,11 +53,13 @@ subprojects {
 
 paperweight {
     serverProject.set(project(":Patina-Server"))
+    
+    remapRepo.set("https://maven.fabricmc.org/repository/release/")
+    decompileRepo.set("https://files.minecraftforge.net/maven/")    
+    
 
     usePaperUpstream(providers.gradleProperty("paperRef")) {
         withPaperPatcher {
-            remapRepo.set("https://maven.quiltmc.org/repository/release/")
-            decompileRepo.set("https://files.minecraftforge.net/maven/")
 
             apiPatchDir.set(layout.projectDirectory.dir("patches/api"))
             apiOutputDir.set(layout.projectDirectory.dir("Patina-API"))
